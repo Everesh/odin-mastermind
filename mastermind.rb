@@ -167,7 +167,19 @@ class Mastermind
   end
 
   def computer_guess
-    history[round][0].map! { trunked_colors[rand(trunked_colors.size)] }
+    miss_aligned_colors = []
+    unless round.zero?
+      history[round - 1][1].each.with_index do |results, column|
+        history[round][0][column] = history[round - 1][0][column] if results == trunked_colors[1]
+        miss_aligned_colors.push(history[round - 1][0][column]) if results == trunked_colors[0]
+      end
+    end
+
+    history[round][0].map! do |guess|
+      next guess unless guess == ' '
+
+      miss_aligned_colors.empty? ? trunked_colors[rand(trunked_colors.size)] : miss_aligned_colors[0]
+    end
   end
 end
 
