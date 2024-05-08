@@ -101,12 +101,16 @@ class Mastermind
     code_left
   end
 
-
   def print_state_guesser
+    attempt_left = history.reduce(0) { |acc, attempt| attempt[0][0] == ' ' ? acc + 1 : acc }
     puts "Available colors: #{COLORS.map { |color| color }.join(', ')}"
-    puts "Attempts left: #{history.reduce(0) { |acc, attempt| attempt[0][0] == ' ' ? acc + 1 : acc }}"
+    puts "Attempts left: #{attempt_left}"
     puts '+---+---+---+---+'
-    puts '| ? | ? | ? | ? |'
+    if code == history[round][0] || attempt_left.zero?
+      puts "| #{code[0]} | #{code[1]} | #{code[2]} | #{code[3]} |"
+    else
+      puts '| ? | ? | ? | ? |'
+    end
     puts '+---+---+---+---+-+---+---+---+---+'
     history.each do |attempt|
       print "| #{attempt[0][0]} | #{attempt[0][1]} | #{attempt[0][2]} | #{attempt[0][3]} |"
