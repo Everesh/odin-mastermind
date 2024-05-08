@@ -40,7 +40,7 @@ class Mastermind
   end
 
   def computer_mastermind
-    code.map! { COLORS[rand(COLORS.size)] }
+    code.map! { trunked_colors[rand(trunked_colors.size)] }
     ATTEMPTS.times { break if guessed? }
     print_state_guesser
     if code == history[round][0]
