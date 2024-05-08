@@ -26,7 +26,7 @@ class Mastermind
     @trunked_colors = COLORS.map do |color|
       color.match(/((?:\e\[\d+m)+)(?=[^\e]*?\e\[4m)/)[0].concat(color.match(/\e\[4m(.\e\[0m)/)[1])
     end
-    puts 'Computer mastermind? [Y/n]'
+    print 'Computer mastermind? [Y/n] '
     if gets.chr.downcase == 'n'
       player_mastermind
     else
@@ -35,7 +35,7 @@ class Mastermind
   end
 
   def new_game?
-    puts 'Care for a rematch? [Y/n]'
+    print 'Care for a rematch? [Y/n] '
     gets.chr.downcase != 'n'
   end
 
