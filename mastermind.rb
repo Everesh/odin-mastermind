@@ -17,12 +17,13 @@ class Mastermind
 
   private
 
-  attr_accessor :code, :history, :round
+  attr_accessor :code, :history, :round, :trunked_colors
 
   def new_game
     @code = Array.new(4)
     @history = Array.new(ATTEMPTS) { Array.new(2) { Array.new(4, ' ') } } # [Attempt no.][0-guess / 1-feedback][values]
     @round = -1
+    @trunked_colors = COLORS.map { |color| color.match(/\e\[4.m/)[0].concat(color.match(/\e\[4m(.\e\[0m)/)[1]) }
     puts 'Computer mastermind? [Y/n]'
     if gets.chr.downcase == 'n'
       player_mastermind
@@ -63,7 +64,7 @@ class Mastermind
   end
 
   def take_guess
-    # TO DO
+    puts 'Give me your best guess! (colors separated by space)'
   end
 
   def feedback
