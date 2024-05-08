@@ -61,8 +61,9 @@ class Mastermind
     puts 'Give me your best guess! (colors separated by space)'
     begin
       guess = gets.split(' ')
-      raise StandardError unless guess.size == 4
+      raise StandardError unless guess.size == 4 || guess[0].length == 4
 
+      guess = guess[0].split('') if guess[0].length == 4
       guess.each.with_index do |color, index|
         lead = color.chr.upcase
         raise StandardError unless trunked_colors.any? { |color_reference| color_reference.match(/[A-Z]/)[0] == lead }
