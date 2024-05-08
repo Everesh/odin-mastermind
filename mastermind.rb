@@ -79,8 +79,20 @@ class Mastermind
   end
 
   def feedback
-    # TO DO
+    code_left = right_guesses
   end
+
+  def right_guesses
+    code_left = code.dup
+    history[round][0].each.with_index do |guess, column|
+      if guess == code[column]
+        history[round][1][column] = trunked_colors[1]
+        code_left.delete_at(code_left.index(guess))
+      end
+    end
+    code_left
+  end
+
 
   def print_state_guesser
     puts "Available colors: #{COLORS.map { |color| color }.join(', ')}"
