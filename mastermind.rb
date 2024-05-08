@@ -121,8 +121,30 @@ class Mastermind
   end
 
   def player_mastermind
-    # TO DO
+    create_code
     new_game if new_game?
+  end
+
+  def create_code
+    puts 'Have a code in mind? Great, gimme! (colors separated by space)'
+    begin
+      new_code = gets.split(' ')
+      raise StandardError unless new_code.size == 4 || new_code[0].length == 4
+
+      new_code = new_code[0].split('') if new_code[0].length == 4
+      new_code.each.with_index do |color, index|
+        lead = color.chr.upcase
+        raise StandardError unless trunked_colors.any? { |color_reference| color_reference.match(/[A-Z]/)[0] == lead }
+
+        (lead = 'U' if lead == 'B' && new_code[index][2].upcase == 'U') if new_code[index].size > 2
+        trunked_colors.each do |color_reference|
+          code[index] = color_reference if color_reference.match(/[A-Z]/)[0] == lead
+        end
+      end
+    rescue StandardError
+      puts 'Invalid Input!'
+      retry
+    end
   end
 end
 
