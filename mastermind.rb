@@ -1,5 +1,8 @@
 class Mastermind
-  COLORS = %w[white black red green blue yellow orange purple].freeze # 8 colors total
+  COLORS = ["\e[47m\e[30m\e[4mW\e[0m\e[47mhite\e[0m", "\e[40m\e[37m\e[4mB\e[0m\e[40mlack\e[0m",
+            "\e[41m\e[4mR\e[0m\e[41med\e[0m", "\e[42m\e[4mG\e[0m\e[42mreen\e[0m",
+            "\e[44mbl\e[4mU\e[0m\e[44me\e[0m", "\e[43m\e[4mY\e[0m\e[43mellow\e[0m",
+            "\e[45m\e[4mM\e[0m\e[45magenta\e[0m", "\e[46m\e[4mC\e[0m\e[46myan\e[0m"].freeze # 8 colors total
   ATTEMPTS = 8
 
   def initialize
@@ -80,7 +83,7 @@ class Mastermind
 
   def print_state_guesser
     puts "Available colors: #{COLORS.map { |color| color }.join(', ')}"
-    puts "Attempts left: #{history.reduce(0) { |attempt| attempt[0][0] == ' ' ? 1 : 0 }}"
+    puts "Attempts left: #{history.reduce(0) { |acc,attempt| attempt[0][0] == ' ' ? acc + 1 : acc }}"
     puts '+---+---+---+---+'
     puts '| ? | ? | ? | ? |'
     puts '+---+---+---+---+-+---+---+---+---+'
