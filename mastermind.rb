@@ -71,11 +71,11 @@ class Mastermind
 
       guess.each.with_index do |color, index|
         lead = color.chr.upcase
-        raise StandardError unless trunked_colors.any? { |color| color[5] == lead }
+        raise StandardError unless trunked_colors.any? { |color_reference| color_reference.match(/[A-Z]/)[0] == lead }
 
         (lead = 'U' if lead == 'B' && guess[index][2].upcase == 'U') if guess[index].size > 2
         trunked_colors.each do |color_reference|
-          history[round][0][index] = color_reference if color_reference[5] == lead
+          history[round][0][index] = color_reference if color_reference.match(/[A-Z]/)[0] == lead
         end
       end
     rescue StandardError
