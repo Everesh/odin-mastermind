@@ -34,11 +34,7 @@ class Mastermind
 
   def new_game?
     puts 'Care for a rematch? [Y/n]'
-    if gets.chr.downcase == 'n'
-      false
-    else
-      true
-    end
+    gets.chr.downcase != 'n'
   end
 
   def computer_mastermind
