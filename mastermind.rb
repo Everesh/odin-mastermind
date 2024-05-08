@@ -14,11 +14,12 @@ class Mastermind
 
   private
 
-  attr_accessor :code, :history
+  attr_accessor :code, :history, :round
 
   def new_game
     @code = Array.new(4)
     @history = Array.new(ATTEMPTS) { Array.new(2) { Array.new(4, ' ') } } # [Attempt no.][0-guess / 1-feedback][values]
+    @round = -1
     puts 'Computer mastermind? [Y/n]'
     if gets.chr.downcase == 'n'
       player_mastermind
@@ -49,10 +50,12 @@ class Mastermind
   end
 
   def guessed?
+    self.round += 1
     print_state_guesser
     take_guess
     feedback
-    true if matching?
+    return true if matching?
+
     false
   end
 
