@@ -45,7 +45,7 @@ class Mastermind
     code.map! { COLORS[rand(COLORS.size)] }
     ATTEMPTS.times { break if guessed? }
     print_state_guesser
-    if matching?
+    if code == history[round][0]
       puts 'You did it, you won! The computer got mastered or something'
     else
       puts 'Shucks, better luck next time'
@@ -58,7 +58,7 @@ class Mastermind
     print_state_guesser
     take_guess
     feedback
-    return true if matching?
+    return true if code == history[round][0]
 
     false
   end
@@ -88,20 +88,9 @@ class Mastermind
     # TO DO
   end
 
-  def matching?
-    if code[0] == history[round][0][0] &&
-       code[1] == history[round][0][1] &&
-       code[2] == history[round][0][2] &&
-       code[3] == history[round][0][3]
-      true
-    else
-      false
-    end
-  end
-
   def print_state_guesser
     puts "Available colors: #{COLORS.map { |color| color }.join(', ')}"
-    puts "Attempts left: #{history.reduce(0) { |acc,attempt| attempt[0][0] == ' ' ? acc + 1 : acc }}"
+    puts "Attempts left: #{history.reduce(0) { |acc, attempt| attempt[0][0] == ' ' ? acc + 1 : acc }}"
     puts '+---+---+---+---+'
     puts '| ? | ? | ? | ? |'
     puts '+---+---+---+---+-+---+---+---+---+'
@@ -116,7 +105,6 @@ class Mastermind
     # TO DO
     new_game if new_game?
   end
-
 end
 
 Mastermind.new
