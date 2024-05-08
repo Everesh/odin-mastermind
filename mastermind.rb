@@ -68,7 +68,14 @@ class Mastermind
   end
 
   def matching?
-    # TO DO
+    if code[0] == history[round][0][0] &&
+       code[1] == history[round][0][1] &&
+       code[2] == history[round][0][2] &&
+       code[3] == history[round][0][3]
+      true
+    else
+      false
+    end
   end
 
   def print_state_guesser
