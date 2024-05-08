@@ -153,6 +153,16 @@ class Mastermind
       retry
     end
   end
+
+  def computer_guessed?
+    self.round += 1
+    print_state_guesser
+    computer_guess
+    feedback
+    return true if code == history[round][0]
+
+    false
+  end
 end
 
 Mastermind.new
