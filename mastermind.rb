@@ -133,6 +133,7 @@ class Mastermind
   end
 
   def create_code
+    puts "Available colors: #{COLORS.map { |color| color }.join(', ')}"
     puts 'Have a code in mind? Great, gimme! (colors separated by space)'
     begin
       new_code = gets.split(' ')
