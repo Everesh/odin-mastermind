@@ -80,6 +80,14 @@ class Mastermind
 
   def feedback
     code_left = right_guesses
+    history[round][0].each.with_index do |guess, column|
+      next unless history[round][1][column] == ' '
+
+      if code_left.include?(guess)
+        history[round][1][column] = trunked_colors[0]
+        code_left.delete_at(code_left.index(guess))
+      end
+    end
   end
 
   def right_guesses
