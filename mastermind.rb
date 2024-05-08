@@ -1,5 +1,5 @@
 class Mastermind
-  COLORS = ["\e[47m\e[30m\e[4mW\e[0m\e[47mhite\e[0m", "\e[40m\e[37m\e[4mB\e[0m\e[40mlack\e[0m",
+  COLORS = ["\e[47m\e[30m\e[4mW\e[0m\e[47m\e[30mhite\e[0m", "\e[40m\e[37m\e[4mB\e[0m\e[40mlack\e[0m",
             "\e[41m\e[4mR\e[0m\e[41med\e[0m", "\e[42m\e[4mG\e[0m\e[42mreen\e[0m",
             "\e[44mbl\e[4mU\e[0m\e[44me\e[0m", "\e[43m\e[4mY\e[0m\e[43mellow\e[0m",
             "\e[45m\e[4mM\e[0m\e[45magenta\e[0m", "\e[46m\e[4mC\e[0m\e[46myan\e[0m"].freeze # 8 colors total
@@ -23,7 +23,9 @@ class Mastermind
     @code = Array.new(4)
     @history = Array.new(ATTEMPTS) { Array.new(2) { Array.new(4, ' ') } } # [Attempt no.][0-guess / 1-feedback][values]
     @round = -1
-    @trunked_colors = COLORS.map { |color| color.match(/\e\[4.m/)[0].concat(color.match(/\e\[4m(.\e\[0m)/)[1]) }
+    @trunked_colors = COLORS.map do |color|
+      color.match(/((?:\e\[\d+m)+)(?=[^\e]*?\e\[4m)/)[0].concat(color.match(/\e\[4m(.\e\[0m)/)[1])
+    end
     puts 'Computer mastermind? [Y/n]'
     if gets.chr.downcase == 'n'
       player_mastermind
