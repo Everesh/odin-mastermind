@@ -122,6 +122,13 @@ class Mastermind
 
   def player_mastermind
     create_code
+    ATTEMPTS.times { break if computer_guessed? }
+    print_state_guesser
+    if code == history[round][0]
+      puts 'Pff, punny code. Make a better one!'
+    else
+      puts "Oh damn, it's impenetrable!"
+    end
     new_game if new_game?
   end
 
