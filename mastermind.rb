@@ -104,6 +104,7 @@ class Mastermind
 
   def print_state_guesser
     attempt_left = history.reduce(0) { |acc, attempt| attempt[0][0] == ' ' ? acc + 1 : acc }
+    system('clear') if RUBY_PLATFORM =~ /linux/
     puts "Available colors: #{COLORS.map { |color| color }.join(', ')}"
     puts "Attempts left: #{attempt_left}"
     puts '+---+---+---+---+'
