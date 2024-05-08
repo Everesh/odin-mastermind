@@ -27,11 +27,7 @@ class Mastermind
       color.match(/((?:\e\[\d+m)+)(?=[^\e]*?\e\[4m)/)[0].concat(color.match(/\e\[4m(.\e\[0m)/)[1])
     end
     print 'Computer mastermind? [Y/n] '
-    if gets.chr.downcase == 'n'
-      player_mastermind
-    else
-      computer_mastermind
-    end
+    gets.chr.downcase == 'n' ? player_mastermind : computer_mastermind
   end
 
   def new_game?
