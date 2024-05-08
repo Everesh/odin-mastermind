@@ -65,6 +65,21 @@ class Mastermind
 
   def take_guess
     puts 'Give me your best guess! (colors separated by space)'
+    begin
+      guess = gets.split(' ')
+      raise StandardError unless guess.size == 4
+
+      guess.each.with_index do |color, index|
+        lead = color.chr.upcase
+        raise StandardError unless trunked_colors.any? { |color| color[5] == lead }
+
+        (lead = 'U' if lead == 'B' && guess[index][2].upcase == 'U') if guess[index].size > 2
+        trunked_colors.each { |color| history[round][0][index] = color if color[5] == lead }
+      end
+    rescue StandardError
+      puts 'Invalid Input!'
+      retry
+    end
   end
 
   def feedback
