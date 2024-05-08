@@ -159,9 +159,15 @@ class Mastermind
     print_state_guesser
     computer_guess
     feedback
+    puts 'Next turn [Enter]'
+    gets
     return true if code == history[round][0]
 
     false
+  end
+
+  def computer_guess
+    history[round][0].map! { trunked_colors[rand(trunked_colors.size)] }
   end
 end
 
