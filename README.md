@@ -21,9 +21,9 @@ Mastermind is a code-breaking game where one player (the codemaker) sets a code 
    git clone https://github.com/your-username/mastermind-game.git
    ```
 3. Navigate to the project directory:
-  ```bash
-  cd odin-mastermind
-  ```
+   ```bash
+   cd odin-mastermind
+   ```
 4. Run the game:
    ```bash
    ruby mastermind.rb
