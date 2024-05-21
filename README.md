@@ -1,6 +1,6 @@
 # odin-mastermind
 
-A Ruby implementation of the classic [Mastermind game](https://en.wikipedia.org/wiki/Mastermind_(board_game%29), created as part of [The Odin Project](https://www.theodinproject.com/about).
+A Ruby implementation of the classic [Mastermind game](https://en.wikipedia.org/wiki/Mastermind_(board_game)), created as part of [The Odin Project](https://www.theodinproject.com/about).
 
 ## Game Overview
 
